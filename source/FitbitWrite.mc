@@ -32,7 +32,7 @@ class FitbitWrite
     	var url = new_activity_url;
         var parameters = {
         	"activityId" => "90013",
-        	"distance" => steps,
+        	"distance" => steps.toString(),
         	"distanceUnit" => "steps",
         	"startTime" => time.hour + ":" + time.min + ":" + time.sec,
         	"durationMillis" => "60000",
@@ -42,12 +42,10 @@ class FitbitWrite
         var options = {:method => Communications.HTTP_REQUEST_METHOD_POST, :headers => headers};
         var responseCallback = method(:onWriteSteps);
         Communications.makeWebRequest(url, parameters, options, responseCallback);
-        caller.appendWatchText(".");
     }
     
     function onWriteSteps(responseCode, data)
-    {	
-    	caller.appendWatchText("\n" + responseCode + ", " + data);	
+    {		
     	System.println("onWriteSteps(" + responseCode + ", " + data + ")");
     	caller.onWriteData();
     }
