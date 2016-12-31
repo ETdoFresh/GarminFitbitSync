@@ -23,7 +23,6 @@ class WebRequestApp extends App.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() {
-        mView = new WebRequestView();
-        return [mView, new WebRequestDelegate(mView.method(:onReceive))];
+        return [new WebRequestView()];
     }
 }
